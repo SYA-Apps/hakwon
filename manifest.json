@@ -1,11 +1,11 @@
 {
-    "name": "hakwon",
-    "short_name": "hakwon",
+    "name": "학원비서 — 학원비 관리",
+    "short_name": "학원비서",
     "start_url": ".",
     "display": "standalone",
-    "background_color": "#0175C2",
-    "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "background_color": "#FFFDF6",
+    "theme_color": "#6E8B66",
+    "description": "학원비·결제일·시간표를 한 곳에서. 우리 아이 사교육비 관리 앱.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [
