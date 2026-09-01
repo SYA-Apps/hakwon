@@ -1,0 +1,126 @@
+<!--
+  학원비서 개인정보처리방침 — **이 파일이 원본이다.**
+  =====================================================================
+  구글은 두 곳을 다 요구한다(하나만 있으면 정책 위반):
+    1) 웹: https://sya-apps.github.io/hakwon/privacy.html  → 플레이 콘솔 «개인정보처리방침» 칸
+    2) 앱 안 링크: 설정 > 개인정보처리방침 (lib/config/app_info.dart 의 privacyUrl)
+  web/ 에 두었으므로 `flutter build web` 이 산출물에 그대로 실어 Pages 로 올라간다.
+  방침을 두 벌로 관리하면 앱은 살아 있는데 방침만 죽는 날이 온다 — 고칠 때는 여기만.
+
+  ⚠️ 1.0 은 **광고 없이** 낸다(AdService.adsEnabled = false). §4 가 그렇게 적혀 있다.
+     광고를 켜는 날 §4 와 **데이터 안전 설문**과 매니페스트 AD_ID 를 **함께** 고친다 —
+     한쪽만 고치면 불일치로 반려된다(플레이북 05). 목록: docs/출시-체크리스트.md
+-->
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>학원비서 개인정보처리방침</title>
+<style>
+  :root { color-scheme: light dark; }
+  body { max-width: 720px; margin: 0 auto; padding: 24px 18px 64px;
+         font: 16px/1.7 system-ui, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+         color: #1a1a1a; background: #fff; }
+  @media (prefers-color-scheme: dark) { body { color: #e6e6e6; background: #16171a; } }
+  h1 { font-size: 1.5rem; } h2 { font-size: 1.15rem; margin-top: 2em; }
+  .box { border: 1px solid currentColor; border-radius: 10px; padding: 12px 16px; opacity: .95; }
+  .muted { opacity: .7; font-size: .9rem; }
+  a { color: inherit; }
+  hr { border: none; border-top: 1px solid currentColor; opacity: .2; margin: 2.5em 0; }
+</style>
+</head>
+<body>
+
+<h1>학원비서 개인정보처리방침</h1>
+<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 9월 1일</p>
+
+<div class="box">
+  <strong>학원비서는 여러분의 개인정보를 서버로 수집하지 않습니다.</strong>
+  입력한 학원·자녀·시간표·학원비·납부 기록은 <strong>이 기기 안에만</strong> 저장되며,
+  저희(개발자)를 포함해 누구에게도 전송되지 않습니다.
+</div>
+
+<h2>1. 우리가 수집하는 정보</h2>
+<p>없습니다. 계정도, 로그인도, 회원가입도 없습니다. 앱을 켜는 데 아무것도 요구하지 않으며,
+여러분이 입력한 내용은 이 기기의 앱 저장소에만 보관됩니다.</p>
+
+<h2>2. 기기에 저장되는 정보</h2>
+<p>여러분이 직접 입력한 다음 내용이 기기 안에 저장됩니다.</p>
+<ul>
+  <li>자녀 이름</li>
+  <li>학원 이름·주소·연락처(이름과 전화번호)·과목·메모</li>
+  <li>수업 시간표, 셔틀 시간·장소</li>
+  <li>학원비 금액, 결제일·결제 방법, 실제 납부 기록</li>
+</ul>
+<p>안드로이드에서는 앱 내부 저장소의 파일에, 웹(브라우저) 버전에서는 브라우저의
+로컬 저장소에 보관됩니다. <strong>어떤 서버로도 전송되지 않으며</strong>, 앱을 삭제하면
+함께 사라집니다. 안드로이드의 구글 드라이브 자동 백업도 꺼 두었습니다
+(<code>allowBackup=false</code>) — 민감한 내용이 모르는 사이에 클라우드로 올라가지
+않게 하기 위해서입니다. 대신 <strong>설정 &gt; 백업 파일 저장</strong>으로 여러분이 직접
+파일을 만들어 옮길 수 있습니다. 그 파일을 어디에 보관할지는 여러분이 정합니다.</p>
+
+<h2>3. 외부로 나가는 것</h2>
+<p>기기에 저장된 위 내용은 전송되지 않습니다. 다만 아래 두 기능은 성격상 인터넷을 씁니다.</p>
+<ul>
+  <li><strong>학원 검색(네이버 지역검색)</strong> — 학원을 추가할 때 «네이버에서 찾기»를
+      누르면, 여러분이 입력한 <em>검색어(학원 이름 등)</em>만 네이버 검색 API로 전송되어
+      주소·전화번호를 받아옵니다. 자녀 이름·학원비 등 다른 정보는 함께 보내지 않으며,
+      이 기능을 쓰지 않으면 아무것도 전송되지 않습니다.</li>
+  <li><strong>광고(Google AdMob)</strong> — 아래 4항.</li>
+</ul>
+
+<h2>4. 광고</h2>
+<p><strong>이 앱은 현재 광고를 게재하지 않습니다.</strong> 광고 식별자를 비롯해 광고를 위한
+어떤 정보도 처리하지 않으며, 그에 필요한 권한(광고 ID)도 앱에서 제거해 두었습니다.</p>
+<p>앞으로 광고를 도입하게 되면 <strong>이 방침을 먼저 고쳐 시행일과 함께 알리고</strong>,
+스토어의 «데이터 안전» 정보도 함께 갱신합니다. 그때에는 동의가 필요한 지역에서 동의를
+여쭙고, 광고를 원하지 않는 분을 위한 일회성 «광고 제거» 구매를 함께 제공합니다.</p>
+
+<h2>5. 권한</h2>
+<ul>
+  <li><strong>연락처 읽기</strong>(선택) — 학원 연락처를 폰 주소록에서 가져올 때만 씁니다.
+      여러분이 고른 항목의 이름·전화번호만 앱에 복사되며, 주소록 전체를 읽어 보관하거나
+      외부로 보내지 않습니다. 허용하지 않아도 직접 입력으로 앱을 쓸 수 있습니다.</li>
+  <li><strong>알림</strong>(선택) — 결제일 알림을 이 기기에서 띄우기 위해서입니다.
+      알림은 기기 안에서 예약되며 서버를 거치지 않습니다.</li>
+</ul>
+
+<h2>6. 아동의 개인정보</h2>
+<p>이 앱은 보호자가 쓰는 앱이며, 만 14세 미만 아동으로부터 개인정보를 수집하지 않습니다.
+자녀 이름을 입력하더라도 그 정보는 보호자의 기기 안에만 남고 외부로 전송되지 않습니다.</p>
+
+<h2>7. 정보의 삭제</h2>
+<p>앱 안에서 각 항목을 지우면 즉시 사라지고, 앱을 삭제하면 저장된 내용이 모두 함께
+사라집니다. 서버에 사본이 없으므로 별도의 삭제 요청 절차가 필요하지 않습니다.</p>
+
+<h2>8. 방침의 변경</h2>
+<p>이 방침이 바뀌면 이 페이지에 시행일과 함께 알립니다.</p>
+
+<h2>9. 문의</h2>
+<p>문의: <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20개인정보%20문의">sya.apps.dev@gmail.com</a></p>
+
+<hr>
+
+<h1 lang="en">Hakwon Bisu — Privacy Policy</h1>
+<p class="muted" lang="en">Effective: September 1, 2026</p>
+<div class="box" lang="en">
+  <strong>Hakwon Bisu does not collect your personal information on any server.</strong>
+  Everything you enter is stored <strong>only on this device</strong> and is never transmitted.
+</div>
+<p lang="en"><strong>1. Information we collect —</strong> None. No account, no login.</p>
+<p lang="en"><strong>2. Stored on device —</strong> Children's names, academy names, addresses,
+contacts, class schedules, tuition amounts and payment records stay in the app's local storage
+and are deleted when you uninstall. Android auto-backup is disabled; you may export a backup file yourself.</p>
+<p lang="en"><strong>3. What leaves the device —</strong> Only (a) the search term you type when
+using Naver local search to look up an academy's address, and (b) advertising data handled by Google AdMob.</p>
+<p lang="en"><strong>4. Advertising —</strong> This app currently shows no ads and processes no
+advertising identifiers; the advertising ID permission is removed from the app. If ads are
+introduced later, this policy and the store's Data Safety information will be updated first.</p>
+<p lang="en"><strong>5. Permissions —</strong> Contacts (optional, only the entry you pick) and
+notifications (optional, scheduled locally).</p>
+<p lang="en"><strong>6. Children —</strong> We do not knowingly collect data from children under 14.</p>
+<p lang="en"><strong>7. Contact —</strong> <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20Privacy%20Inquiry">sya.apps.dev@gmail.com</a></p>
+
+</body>
+</html>
