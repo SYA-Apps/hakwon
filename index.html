@@ -1,6 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  <!-- `//hakwon/` 처럼 빗금 둘로 들어오면 Flutter 가 history.replaceState 에서 SecurityError 로
+       멈춘다(회색 화면). 맨 먼저 한 줄로 바로잡는다 — ADMIN 전달 2026-09-11. -->
+  <script>if(location.pathname.indexOf('//')===0)location.replace(location.pathname.replace(/^\/+/,'/')+location.search+location.hash);</script>
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
