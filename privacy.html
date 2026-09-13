@@ -7,9 +7,14 @@
   web/ 에 두었으므로 `flutter build web` 이 산출물에 그대로 실어 Pages 로 올라간다.
   방침을 두 벌로 관리하면 앱은 살아 있는데 방침만 죽는 날이 온다 — 고칠 때는 여기만.
 
-  ⚠️ 1.0 은 **광고 없이** 낸다(AdService.adsEnabled = false). §4 가 그렇게 적혀 있다.
-     광고를 켜는 날 §4 와 **데이터 안전 설문**과 매니페스트 AD_ID 를 **함께** 고친다 —
+  ⚠️ 1.0 은 **광고 없이** 낸다(AdService.adsEnabled = false). §5 가 그렇게 적혀 있다.
+     광고를 켜는 날 §5 와 **데이터 안전 설문**과 매니페스트 AD_ID 를 **함께** 고친다 —
      한쪽만 고치면 불일치로 반려된다(플레이북 05). 목록: docs/출시-체크리스트.md
+
+  🔁 2026-09-12: «함께 보기»(구글 로그인 · 시간표 공유)가 들어가며 §1·§3·§4·§8 을 고쳤다.
+     로그인 수단은 1.0 에 **구글만**(사용자 결정). 카카오·네이버·애플을 적지 말 것.
+  서버 위치: 서울 리전(ap-northeast-2, ADMIN 9/12 관리 API 로 확인) — 국외 이전 아님. 나란히와 같은 문구.
+  🚨 «소담 계정 완전 삭제»(§8)가 서버에 실제로 생긴 뒤에 이 판을 낸다 — docs/출시-체크리스트.md
 -->
 <!doctype html>
 <html lang="ko">
@@ -33,17 +38,26 @@
 <body>
 
 <h1>학원비서 개인정보처리방침</h1>
-<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 9월 1일</p>
+<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 9월 12일(«함께 보기» 추가)</p>
 
 <div class="box">
-  <strong>학원비서는 여러분의 개인정보를 서버로 수집하지 않습니다.</strong>
-  입력한 학원·자녀·시간표·학원비·납부 기록은 <strong>이 기기 안에만</strong> 저장되며,
-  저희(개발자)를 포함해 누구에게도 전송되지 않습니다.
+  <strong>학원비서는 기본적으로 여러분의 정보를 서버로 보내지 않습니다.</strong>
+  입력한 학원·자녀·시간표·학원비·납부 기록은 <strong>이 기기 안에만</strong> 저장됩니다.
+  <br>예외는 하나입니다 — 여러분이 <strong>«함께 보기»</strong>를 켜 구글로 로그인하고
+  시간표나 학원 정보를 공유할 때만, <strong>공유한 내용과 로그인 정보</strong>가 아래 3·4항처럼
+  서버에 저장됩니다. <strong>학원비와 납부 기록은 어떤 경우에도 서버로 가지 않습니다</strong>
+  (학원 정보 보내기에서 보내는 사람이 학원비를 직접 고른 경우만 예외 — 3항).
 </div>
 
 <h2>1. 우리가 수집하는 정보</h2>
-<p>없습니다. 계정도, 로그인도, 회원가입도 없습니다. 앱을 켜는 데 아무것도 요구하지 않으며,
-여러분이 입력한 내용은 이 기기의 앱 저장소에만 보관됩니다.</p>
+<p><strong>기본은 없습니다.</strong> 앱을 쓰는 데 계정·로그인·회원가입이 필요 없습니다.</p>
+<p>선택 기능인 <strong>«함께 보기»</strong>를 쓰려고 <strong>구글 계정으로 로그인</strong>하면 다음이 저장됩니다.</p>
+<ul>
+  <li><strong>구글 계정 정보</strong> — 이메일 주소, 이름(프로필 이름), 프로필 사진 주소,
+      구글 계정 식별자. 로그인을 처리하는 서비스(아래 4항)가 계정을 만들 때 저장합니다.</li>
+  <li><strong>보여 줄 이름</strong> — 위 프로필 이름. 함께 보는 상대에게만 «누구의 시간표인지»로 보입니다.
+      이메일은 상대에게 보이지 않습니다.</li>
+</ul>
 
 <h2>2. 기기에 저장되는 정보</h2>
 <p>여러분이 직접 입력한 다음 내용이 기기 안에 저장됩니다.</p>
@@ -54,73 +68,122 @@
   <li>학원비 금액, 결제일·결제 방법, 실제 납부 기록</li>
 </ul>
 <p>안드로이드에서는 앱 내부 저장소의 파일에, 웹(브라우저) 버전에서는 브라우저의
-로컬 저장소에 보관됩니다. <strong>어떤 서버로도 전송되지 않으며</strong>, 앱을 삭제하면
-함께 사라집니다. 안드로이드의 구글 드라이브 자동 백업도 꺼 두었습니다
-(<code>allowBackup=false</code>) — 민감한 내용이 모르는 사이에 클라우드로 올라가지
+로컬 저장소에 보관되며, 앱을 삭제하면 함께 사라집니다. 안드로이드의 구글 드라이브 자동 백업도
+꺼 두었습니다(<code>allowBackup=false</code>) — 민감한 내용이 모르는 사이에 클라우드로 올라가지
 않게 하기 위해서입니다. 대신 <strong>설정 &gt; 백업 파일 저장</strong>으로 여러분이 직접
 파일을 만들어 옮길 수 있습니다. 그 파일을 어디에 보관할지는 여러분이 정합니다.</p>
 
 <h2>3. 외부로 나가는 것</h2>
-<p>기기에 저장된 위 내용은 전송되지 않습니다. 다만 아래 두 기능은 성격상 인터넷을 씁니다.</p>
+<p>기기에 저장된 위 내용은 기본적으로 전송되지 않습니다. 다만 아래 기능은 성격상 인터넷을 씁니다.</p>
 <ul>
+  <li><strong>함께 보기 — 시간표 공유</strong>(선택) — 아이 하나의 시간표를 공유하면 다음이 서버에 올라갑니다:
+      아이 이름과 표시 색, 수업 요일·시간, 과목 이름, 학원 이름, 셔틀 시각.
+      «학원 정보도 함께»를 켜 두면(기본 켜짐) 학원 주소·연락처(이름과 전화번호)·메모·방학 안내·셔틀 장소도 올라갑니다.
+      <strong>학원비와 납부 기록은 올라가지 않습니다.</strong>
+      이 시간표는 <strong>여러분이 알려 준 초대 코드로 들어온 사람</strong>만 볼 수 있고,
+      고칠 수 있는 사람은 관리자 한 명(처음엔 공유한 사람)뿐입니다.</li>
+  <li><strong>함께 보기 — 학원 정보 보내기</strong>(선택) — 고른 학원 카드의 내용(학원 이름·과목·주소·연락처·메모·시간표·셔틀)이
+      코드로 전달됩니다. 학원비는 <strong>보내는 사람이 직접 고른 경우에만</strong> 담기고,
+      납부 기록은 어떤 경우에도 담기지 않습니다. 받아 가지 않은 꾸러미는 400일 뒤 사라집니다.</li>
   <li><strong>학원 검색(네이버 지역검색)</strong> — 학원을 추가할 때 «네이버에서 찾기»를
       누르면, 여러분이 입력한 <em>검색어(학원 이름 등)</em>만 네이버 검색 API로 전송되어
       주소·전화번호를 받아옵니다. 자녀 이름·학원비 등 다른 정보는 함께 보내지 않으며,
       이 기능을 쓰지 않으면 아무것도 전송되지 않습니다.</li>
-  <li><strong>광고(Google AdMob)</strong> — 아래 4항.</li>
+</ul>
+<p class="muted">⚠️ 학원 연락처(선생님·기사님 전화번호)는 다른 사람의 정보입니다. «학원 정보도 함께»를 켜고
+공유하면 그 번호가 공유받는 가족에게도 보입니다. 원하지 않으면 공유할 때 끄세요.</p>
+
+<h2>4. 정보를 처리하는 곳과 보관 기간</h2>
+<ul>
+  <li><strong>Supabase Inc.</strong> — 로그인과 «함께 보기» 자료를 보관하는 서버를 운영합니다.
+      데이터는 서울 리전(대한민국)에 저장됩니다.
+      이 서버는 소담앱스(학원비서를 만든 곳)의 여러 앱이 함께 쓰며, 로그인 계정도 «소담앱스» 계정 하나입니다.
+      다만 <strong>학원비서의 자료는 학원비서 칸에만</strong> 있어 다른 앱에서는 보이지 않습니다.</li>
+  <li><strong>Google</strong> — 구글 로그인을 처리합니다(로그인 창은 «소담앱스» 이름으로 뜹니다).</li>
+  <li><strong>보관 기간</strong> — 공유를 끝내거나(관리자), 학원비서에서 나가거나, 계정을 지울 때까지(8항).
+      학원 정보 꾸러미는 만든 뒤 400일.</li>
 </ul>
 
-<h2>4. 광고</h2>
+<h2>5. 광고</h2>
 <p><strong>이 앱은 현재 광고를 게재하지 않습니다.</strong> 광고 식별자를 비롯해 광고를 위한
 어떤 정보도 처리하지 않으며, 그에 필요한 권한(광고 ID)도 앱에서 제거해 두었습니다.</p>
 <p>앞으로 광고를 도입하게 되면 <strong>이 방침을 먼저 고쳐 시행일과 함께 알리고</strong>,
 스토어의 «데이터 안전» 정보도 함께 갱신합니다. 그때에는 동의가 필요한 지역에서 동의를
 여쭙고, 광고를 원하지 않는 분을 위한 일회성 «광고 제거» 구매를 함께 제공합니다.</p>
 
-<h2>5. 권한</h2>
+<h2>6. 권한</h2>
 <ul>
   <li><strong>연락처 읽기</strong>(선택) — 학원 연락처를 폰 주소록에서 가져올 때만 씁니다.
       여러분이 고른 항목의 이름·전화번호만 앱에 복사되며, 주소록 전체를 읽어 보관하거나
       외부로 보내지 않습니다. 허용하지 않아도 직접 입력으로 앱을 쓸 수 있습니다.</li>
-  <li><strong>알림</strong>(선택) — 결제일 알림을 이 기기에서 띄우기 위해서입니다.
+  <li><strong>알림</strong>(선택) — 결제일·셔틀·수업 종료 알림을 이 기기에서 띄우기 위해서입니다.
       알림은 기기 안에서 예약되며 서버를 거치지 않습니다.</li>
 </ul>
 
-<h2>6. 아동의 개인정보</h2>
+<h2>7. 아동의 개인정보</h2>
 <p>이 앱은 보호자가 쓰는 앱이며, 만 14세 미만 아동으로부터 개인정보를 수집하지 않습니다.
-자녀 이름을 입력하더라도 그 정보는 보호자의 기기 안에만 남고 외부로 전송되지 않습니다.</p>
+자녀 이름은 보호자의 기기 안에만 남고, 보호자가 «함께 보기»로 그 아이의 시간표를 공유한 경우에만
+보호자가 고른 가족에게 전달되도록 서버에 저장됩니다.</p>
 
-<h2>7. 정보의 삭제</h2>
-<p>앱 안에서 각 항목을 지우면 즉시 사라지고, 앱을 삭제하면 저장된 내용이 모두 함께
-사라집니다. 서버에 사본이 없으므로 별도의 삭제 요청 절차가 필요하지 않습니다.</p>
+<h2>8. 정보의 삭제</h2>
+<ul>
+  <li><strong>기기 안의 정보</strong> — 앱 안에서 각 항목을 지우면 즉시 사라지고, 앱을 삭제하면 모두 함께 사라집니다.</li>
+  <li><strong>함께 보기 — 공유 하나</strong>: 관리자는 «공유 끝내기», 보는 사람은 «나가기»로 그 자리에서 지웁니다.</li>
+  <li><strong>학원비서에서 나가기</strong>: 함께 보기 화면에서 누르면 서버의 학원비서 자료(보여 줄 이름·내가 만든 공유)가
+      지워집니다. 소담앱스 계정은 다른 소담 앱을 위해 남습니다.</li>
+  <li><strong>소담 계정 완전 삭제</strong>: 함께 보기 화면에서 누르면 계정 자체와 그 계정의 <strong>모든 소담 앱 자료</strong>가
+      지워지며 되돌릴 수 없습니다.</li>
+  <li><strong>앱이 없어도</strong> 지울 수 있습니다 —
+      <a href="https://sya-apps.github.io/delete-account.html">https://sya-apps.github.io/delete-account.html</a>
+      (소담앱스 계정 삭제 안내 · 메일 요청), 또는 웹 버전(https://sya-apps.github.io/hakwon/)에 로그인해 위와 같은 경로로.</li>
+  <li>다른 사람이 보고 있는 시간표의 관리자라면, 먼저 관리자를 넘기거나 공유를 끝낸 뒤에 나가거나 지울 수 있습니다
+      (보고 있던 가족이 영문도 모르고 잃지 않게 하기 위해서입니다).</li>
+</ul>
 
-<h2>8. 방침의 변경</h2>
+<h2>9. 방침의 변경</h2>
 <p>이 방침이 바뀌면 이 페이지에 시행일과 함께 알립니다.</p>
 
-<h2>9. 문의</h2>
+<h2>10. 문의</h2>
 <p>문의: <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20개인정보%20문의">sya.apps.dev@gmail.com</a></p>
 
 <hr>
 
 <h1 lang="en">Hakwon Bisu — Privacy Policy</h1>
-<p class="muted" lang="en">Effective: September 1, 2026</p>
+<p class="muted" lang="en">Effective: September 1, 2026 · Last updated: September 12, 2026 (added “Share together”)</p>
 <div class="box" lang="en">
-  <strong>Hakwon Bisu does not collect your personal information on any server.</strong>
-  Everything you enter is stored <strong>only on this device</strong> and is never transmitted.
+  <strong>By default, Hakwon Bisu sends nothing to any server.</strong>
+  Everything you enter is stored <strong>only on this device</strong>. The one exception: if you turn on
+  <strong>“Share together”</strong>, sign in with Google and share a timetable or academy info, the shared
+  content and your sign-in information are stored on a server as described below.
+  <strong>Tuition and payment records are never uploaded</strong> (except tuition in an academy pack, only if the sender chooses to include it).
 </div>
-<p lang="en"><strong>1. Information we collect —</strong> None. No account, no login.</p>
+<p lang="en"><strong>1. Information we collect —</strong> None by default; no account is needed to use the app.
+If you sign in with <strong>Google</strong> to use “Share together”, your Google email address, profile name,
+profile picture URL and account identifier are stored by the sign-in service. Only your profile name is shown to people you share with.</p>
 <p lang="en"><strong>2. Stored on device —</strong> Children's names, academy names, addresses,
 contacts, class schedules, tuition amounts and payment records stay in the app's local storage
 and are deleted when you uninstall. Android auto-backup is disabled; you may export a backup file yourself.</p>
-<p lang="en"><strong>3. What leaves the device —</strong> Only (a) the search term you type when
-using Naver local search to look up an academy's address, and (b) advertising data handled by Google AdMob.</p>
-<p lang="en"><strong>4. Advertising —</strong> This app currently shows no ads and processes no
+<p lang="en"><strong>3. What leaves the device —</strong> (a) <em>Timetable sharing</em> (optional): the child's name and colour,
+class days and times, subjects, academy names and shuttle times; with “include academy info” (on by default) also addresses,
+contacts (names and phone numbers), memos, holiday notes and shuttle places — never tuition or payment records.
+Only people who join with your invite code can see it, and only one manager can edit it.
+(b) <em>Academy info packs</em> (optional): the chosen academy cards; tuition only if the sender includes it; never payment records; expires after 400 days.
+(c) The search term you type when using Naver local search to look up an academy.</p>
+<p lang="en"><strong>4. Processors and retention —</strong> Supabase Inc. hosts sign-in and shared data, stored in the Seoul region (South Korea);
+the server is shared by Sodam Apps' apps under one “Sodam Apps” account, but Hakwon Bisu data stays in its own area.
+Google handles Google sign-in. Data is kept until you end a share, leave Hakwon Bisu, or delete your account; academy packs expire after 400 days.</p>
+<p lang="en"><strong>5. Advertising —</strong> This app currently shows no ads and processes no
 advertising identifiers; the advertising ID permission is removed from the app. If ads are
 introduced later, this policy and the store's Data Safety information will be updated first.</p>
-<p lang="en"><strong>5. Permissions —</strong> Contacts (optional, only the entry you pick) and
+<p lang="en"><strong>6. Permissions —</strong> Contacts (optional, only the entry you pick) and
 notifications (optional, scheduled locally).</p>
-<p lang="en"><strong>6. Children —</strong> We do not knowingly collect data from children under 14.</p>
-<p lang="en"><strong>7. Contact —</strong> <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20Privacy%20Inquiry">sya.apps.dev@gmail.com</a></p>
+<p lang="en"><strong>7. Children —</strong> We do not knowingly collect data from children under 14. A child's name is uploaded only
+when a parent shares that child's timetable with family members they choose.</p>
+<p lang="en"><strong>8. Deletion —</strong> In the “Share together” screen: end a share or leave it; <em>Leave Hakwon Bisu</em> deletes your
+Hakwon Bisu server data and keeps your Sodam Apps account; <em>Delete Sodam account</em> deletes the account and all its data in every
+Sodam app, irreversibly. Without the app, see <a href="https://sya-apps.github.io/delete-account.html">https://sya-apps.github.io/delete-account.html</a>
+or sign in to the web version (https://sya-apps.github.io/hakwon/) and use the same screen.</p>
+<p lang="en"><strong>9. Contact —</strong> <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20Privacy%20Inquiry">sya.apps.dev@gmail.com</a></p>
 
 </body>
 </html>
