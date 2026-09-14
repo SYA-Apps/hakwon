@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  학원비서 초대 링크 — 소담 공통 템플릿(playbook/templates/join.html, 2026-09-14)을 채운 것.
+  규칙: C:\SYA\playbook\templates\초대링크-규칙.md · 앱 쪽: lib/services/invite_link.dart
+
+    https://sya-apps.github.io/hakwon/join.html?code=XXXXXXXX          📱 안드로이드 앱으로
+    https://sya-apps.github.io/hakwon/join.html?code=XXXXXXXX&to=web   🌐 웹으로
+
+  안드로이드 → intent://join?code=… 로 앱을 연다(없으면 웹 — 스토어 전). 아이폰·PC·to=web → 웹 ./?join=XXXXXXXX
+  🚨 템플릿과 한 곳 다르다: 웹으로 보낼 때 ?code= 가 아니라 **?join=** 이다. Supabase 가 웹 주소의
+     ?code= 를 로그인 되돌아오기로 읽어 교환하려 든다(InviteLink.webParam — 시험이 둘을 맞춰 본다).
+  📌 스토어에 올리면 APP.store 에 플레이스토어 주소를 넣는다(docs/출시-체크리스트.md).
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학원비서 초대</title>
+  <meta name="description" content="누르면 바로 받아요 · 안드로이드는 앱으로, 아이폰·PC는 웹으로">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="학원비서 초대">
+  <meta property="og:description" content="누르면 바로 받아요 · 안드로이드는 앱으로, 아이폰·PC는 웹으로">
+  <meta property="og:image" content="https://sya-apps.github.io/hakwon/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" content="https://sya-apps.github.io/hakwon/join.html">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <style>
+    :root { --bg: #FBF7EE; --paper: #FFFFFF; --ink: #3B3431; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; padding: 72px 18px; background: var(--bg); color: var(--ink);
+      font-family: system-ui, -apple-system, "Apple SD Gothic Neo", "Malgun Gothic", sans-serif;
+      line-height: 1.7; word-break: keep-all; text-align: center;
+    }
+    main { max-width: 380px; margin: 0 auto; }
+    .icon { width: 72px; height: 72px; border-radius: 18px; display: block; margin: 0 auto 18px; }
+    h1 { font-size: 1.25rem; margin: 0 0 8px; }
+    p { opacity: .7; margin: 0 0 24px; }
+    .code { font-size: 1.4rem; font-weight: 700; letter-spacing: .12em; margin: 0 0 24px; }
+    a.btn {
+      display: block; margin: 0 auto 12px; max-width: 280px; text-decoration: none; color: var(--ink);
+      background: var(--paper); border: 1.5px solid var(--ink); border-radius: 14px; padding: 14px 24px; font-weight: 700;
+    }
+    [hidden] { display: none !important; }
+  </style>
+</head>
+<body>
+<main>
+  <img class="icon" src="icons/Icon-192.png" alt="">
+  <h1 id="title">초대받은 곳으로 들어가는 중이에요</h1>
+  <p id="msg">잠깐만요, 앱을 열어 볼게요…</p>
+  <div class="code" id="code" hidden></div>
+  <a class="btn" id="getApp" hidden>안드로이드 앱 받기</a>
+  <a class="btn" id="toWeb" hidden>웹으로 계속하기</a>
+</main>
+<script>
+  (function () {
+    var APP = {
+      scheme: 'hakwon',                 // AndroidManifest <data android:scheme="hakwon" android:host="join"/>
+      pkg: 'com.sya.hakwon',            // applicationId(AppInfo.packageId)
+      store: ''                         // 스토어 전 — 앱이 없으면 웹으로 간다
+    };
+
+    var q = new URLSearchParams(location.search);
+    var code = (q.get('code') || '').replace(/[\s-]/g, '').toUpperCase();
+    // 🚨 ?code= 가 아니라 ?join= (머리 주석).
+    var web = new URL('./?join=' + encodeURIComponent(code), location.href).href;
+    var $ = function (id) { return document.getElementById(id); };
+
+    if (!code) {
+      $('title').textContent = '초대 코드가 없어요';
+      $('msg').textContent = '받은 링크를 다시 확인해 주세요.';
+      return;
+    }
+    $('code').textContent = code.length === 8 ? code.slice(0, 4) + '-' + code.slice(4) : code;
+    $('toWeb').href = web;
+    if (APP.store) $('getApp').href = APP.store;
+
+    var android = /Android/i.test(navigator.userAgent);
+    if (q.get('to') === 'web' || !android) {
+      $('msg').textContent = '웹으로 여는 중이에요…';
+      location.replace(web);
+      return;
+    }
+
+    // 앱이 있으면 곧장 앱으로. 없으면 크롬·카톡이 fallback 주소(스토어 또는 웹)로 보낸다.
+    var fallback = APP.store || web;
+    location.href = 'intent://join?code=' + encodeURIComponent(code)
+      + '#Intent;scheme=' + APP.scheme + ';package=' + APP.pkg
+      + ';S.browser_fallback_url=' + encodeURIComponent(fallback) + ';end';
+
+    // 1.5초 뒤에도 이 화면이 보이면(아무것도 안 열림) 손으로 고르게 한다.
+    setTimeout(function () {
+      if (document.visibilityState !== 'visible') return;
+      $('title').textContent = '앱이 열리지 않았어요';
+      $('msg').textContent = APP.store
+        ? '앱을 받은 뒤 받은 링크를 한 번 더 눌러 주세요. 아니면 웹으로 바로 들어갈 수 있어요.'
+        : '웹으로 바로 들어갈 수 있어요. 코드를 앱의 «함께 보기 → 코드로 받기» 에 직접 넣어도 돼요.';
+      $('code').hidden = false;
+      $('toWeb').hidden = false;
+      if (APP.store) $('getApp').hidden = false;
+    }, 1500);
+  })();
+</script>
+</body>
+</html>
