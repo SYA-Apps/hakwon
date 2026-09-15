@@ -32532,7 +32532,7 @@ if(typeof p=="number")r.push(B.d.D(p))}q=A.aA(a.h(0,"start"))
 if(q==null)q="16:00"
 o=A.o6(a.h(0,"minutes"))
 o=o==null?null:B.d.D(o)
-if(o==null)o=10
+if(o==null)o=20
 n=A.aA(a.h(0,"note"))
 return A.bcE(l,r,m,s,o,n==null?"":n,q)},
 jB:function jB(a,b,c,d){var _=this
@@ -33558,7 +33558,7 @@ break
 case 7:i=B.dl.pU()
 l=l.a
 l.toString
-m=A.bcE(l,A.b([d],t.t),i,o,10,"",A.b6L(e))
+m=A.bcE(l,A.b([d],t.t),i,o,20,"",A.b6L(e))
 s=9
 return A.j(k.F8(m),$async$EI)
 case 9:if(a.e!=null)a.ah(t.c).f.jx(A.l9(null,null,null,null,null,B.H,null,A.B(m.gac5()+" "+m.e+" \ub123\uc5c8\uc5b4\uc694 \u2014 \ub760\ub97c \ub204\ub974\uba74 \uace0\uccd0\uc694",null,null,null,null,null,null,null,null),null,B.c6,null,null,null,null,null,null,null,null,null,null))
@@ -127097,7 +127097,7 @@ k=A.b([A.B(k,l,l,l,l,A.T(l,l,i.at,l,l,l,l,l,l,l,l,16,l,l,B.M,l,l,!0,l,l,l,l,l,l,
 if(j)B.c.M(k,A.b([B.c0,A.bhx(B.Zu,B.axg,new A.b9a(a),A.fR(i.a,l,i.x,B.j_,l,l))],s))
 else k.push(new A.ae(B.p8,A.B("\uc154\ud2c0 \uc2dc\uac01\uc740 \ud559\uc6d0 \ud3b8\uc9d1 \u2192 \uc154\ud2c0\uc5d0\uc11c \ubc14\uafd4\uc694",l,l,l,l,A.T(l,l,i.ay,l,l,l,l,l,l,l,l,11.5,l,l,l,l,l,!0,l,l,l,l,l,l,l,l),l,l,l),l))
 k.push(B.dF)
-k.push(A.B("\uc7a0\uae50 \uc77c\uc815 \u2014 \uc5ec\ub7ec \uac1c \uace8\ub77c\ub3c4 \ub3fc\uc694(\ubcf4\ud1b5 10\ubd84)",l,l,l,l,A.T(l,l,i.ax,l,l,l,l,l,l,l,l,12,l,l,B.L,l,l,!0,l,l,l,l,l,l,l,l),l,l,l))
+k.push(A.B("\uc7a0\uae50 \uc77c\uc815 \u2014 \uc5ec\ub7ec \uac1c \uace8\ub77c\ub3c4 \ub3fc\uc694(20\ubd84, \ub760\ub97c \ub20c\ub7ec \ubc14\uafd4\uc694)",l,l,l,l,A.T(l,l,i.ax,l,l,l,l,l,l,l,l,12,l,l,B.L,l,l,!0,l,l,l,l,l,l,l,l),l,l,l))
 if(m.f==null&&m.r.length>1){j=A.b([],s)
 for(r=m.r,q=r.length,p=m.a,o=0;o<r.length;r.length===q||(0,A.y)(r),++o){n=r[o]
 j.push(A.bgv(A.B(n.b,l,l,l,l,l,l,l,l),new A.b9b(p,b,n),p.a===n.a))}B.c.M(k,A.b([B.cd,A.ix(j,B.bN,0,8)],s))}k.push(B.cd)
