@@ -34122,7 +34122,7 @@ var $async$aAi=A.p(function(b,c){if(b===1){o.push(c)
 s=p}for(;;)switch(s){case 0:g=B.e.aL(a)
 if(g.length===0){q=A.b([],t.T5)
 s=1
-break}k=A.ds("https://hakwon-naver-search.naver-search.workers.dev",0,null).u7(A.a5(["q",g],t.N,t.z))
+break}k=A.ds("https://hakwon-naver-search.sodamapps.workers.dev",0,null).u7(A.a5(["q",g],t.N,t.z))
 n=k
 m=B.my
 l=A.cc()
