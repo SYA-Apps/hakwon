@@ -38,7 +38,7 @@
 <body>
 
 <h1>학원비서 개인정보처리방침</h1>
-<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 9월 15일(로그인하면 내 자료를 계정에 보관 · 관리자에게 보는 사람의 가린 이메일)</p>
+<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 9월 16일(검색 중계 서버와 네이버를 처리하는 곳에 명시 · 신고 · 만든 곳)</p>
 
 <div class="box">
   <strong>로그인하지 않으면 학원비서는 여러분의 정보를 서버로 보내지 않습니다.</strong>
@@ -98,9 +98,12 @@
       코드로 전달됩니다. 학원비는 <strong>보내는 사람이 직접 고른 경우에만</strong> 담기고,
       납부 기록은 어떤 경우에도 담기지 않습니다. 받아 가지 않은 꾸러미는 400일 뒤 사라집니다.</li>
   <li><strong>학원 검색(네이버 지역검색)</strong> — 학원을 추가할 때 «네이버에서 찾기»를
-      누르면, 여러분이 입력한 <em>검색어(학원 이름 등)</em>만 네이버 검색 API로 전송되어
-      주소·전화번호를 받아옵니다. 자녀 이름·학원비 등 다른 정보는 함께 보내지 않으며,
-      이 기능을 쓰지 않으면 아무것도 전송되지 않습니다.</li>
+      누르면, 여러분이 입력한 <em>검색어(학원 이름 등)</em>만 <strong>소담앱스의 중계 서버(Cloudflare Workers)를 거쳐</strong>
+      네이버 지역검색 API로 전송되어 주소·전화번호를 받아옵니다(중계 서버를 두는 이유는 검색 열쇠를 앱에 넣지 않기 위해서입니다).
+      자녀 이름·학원비 등 다른 정보는 함께 보내지 않으며, 이 기능을 쓰지 않으면 아무것도 전송되지 않습니다.</li>
+  <li><strong>신고</strong>(선택) — «함께 보기»로 받아 보는 시간표를 신고하면, <strong>그 시간표의 번호와
+      고른 사유, 신고한 시각, 신고한 분의 계정 식별자</strong>가 서버에 기록됩니다. 사유는 정해진 선택지 중에서만 고르며
+      자유롭게 적는 칸은 없습니다. 이 기록은 <strong>소담앱스만</strong> 보고, 신고당한 사람에게는 알리지 않습니다.</li>
 </ul>
 <p class="muted">⚠️ 학원 연락처(선생님·기사님 전화번호)는 다른 사람의 정보입니다. «학원 정보도 함께»를 켜고
 공유하면 그 번호가 공유받는 가족에게도 보입니다. 원하지 않으면 공유할 때 끄세요.</p>
@@ -112,18 +115,22 @@
       이 서버는 소담앱스(학원비서를 만든 곳)의 여러 앱이 함께 쓰며, 로그인 계정도 «소담앱스» 계정 하나입니다.
       다만 <strong>학원비서의 자료는 학원비서 칸에만</strong> 있어 다른 앱에서는 보이지 않습니다.</li>
   <li><strong>Google</strong> — 구글 로그인을 처리합니다(로그인 창은 «소담앱스» 이름으로 뜹니다).</li>
+  <li><strong>Cloudflare, Inc.</strong> — 학원 검색(3항)의 <strong>중계 서버</strong>를 운영합니다.
+      검색어가 이곳을 거쳐 네이버로 가며, 검색어를 저장하지 않습니다.</li>
+  <li><strong>네이버(NAVER Cloud / 네이버 지역검색 API)</strong> — 여러분이 «네이버에서 찾기»를 누를 때만
+      <strong>검색어를 받아</strong> 학원 주소·전화번호를 돌려줍니다. 네이버는 이 앱의 다른 정보를 받지 않습니다.</li>
   <li><strong>보관 기간</strong> — <strong>내 자료 한 벌</strong>은 로그인해 쓰는 동안 보관되며,
       학원비서에서 나가거나 계정을 지우면 바로 지워집니다(로그아웃만 해서는 지워지지 않고, 다시 로그인하면 이어집니다).
       공유 자료는 공유를 끝내거나(관리자), 학원비서에서 나가거나, 계정을 지울 때까지(8항).
-      학원 정보 꾸러미는 만든 뒤 400일.</li>
+      학원 정보 꾸러미는 만든 뒤 400일.
+      <strong>신고 기록</strong>은 처리하고 확인하는 데 필요한 동안(최대 1년) 보관합니다.</li>
 </ul>
 
 <h2>5. 광고</h2>
 <p><strong>이 앱은 현재 광고를 게재하지 않습니다.</strong> 광고 식별자를 비롯해 광고를 위한
 어떤 정보도 처리하지 않으며, 그에 필요한 권한(광고 ID)도 앱에서 제거해 두었습니다.</p>
 <p>앞으로 광고를 도입하게 되면 <strong>이 방침을 먼저 고쳐 시행일과 함께 알리고</strong>,
-스토어의 «데이터 안전» 정보도 함께 갱신합니다. 그때에는 동의가 필요한 지역에서 동의를
-여쭙고, 광고를 원하지 않는 분을 위한 일회성 «광고 제거» 구매를 함께 제공합니다.</p>
+스토어의 «데이터 안전» 정보도 함께 갱신합니다. 동의가 필요한 지역에서는 그때 동의를 여쭙습니다.</p>
 
 <h2>6. 권한</h2>
 <ul>
@@ -135,7 +142,8 @@
 </ul>
 
 <h2>7. 아동의 개인정보</h2>
-<p>이 앱은 보호자가 쓰는 앱이며, 만 14세 미만 아동으로부터 개인정보를 수집하지 않습니다.
+<p>이 앱은 보호자가 쓰는 도구입니다. 스토어에는 <strong>만 18세 이상</strong>을 대상으로 등록했고,
+아동에게서 직접 개인정보를 수집하지 않습니다(한국 법에 따라 만 14세 미만은 보호자 동의 없이 가입할 수 없습니다).
 자녀 이름은 보호자가 로그인하지 않으면 보호자의 기기 안에만 남습니다. 보호자가 로그인하면 보호자의
 계정에도 보관되며(보호자만 봄), «함께 보기»로 그 아이의 시간표를 공유한 경우에는 보호자가 고른 가족에게
 전달되도록 서버에 저장됩니다.</p>
@@ -159,8 +167,10 @@
 <h2>9. 방침의 변경</h2>
 <p>이 방침이 바뀌면 이 페이지에 시행일과 함께 알립니다.</p>
 
-<h2>10. 문의</h2>
-<p>문의: <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20개인정보%20문의">sya.apps.dev@gmail.com</a></p>
+<h2>10. 만든 곳과 문의</h2>
+<p>상호: <strong>소담</strong>(영문 Sodam Apps) · 사업자등록번호 844-29-01813 ·
+주소: 서울특별시 양천구 신목로 7<br>
+문의: <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20개인정보%20문의">sya.apps.dev@gmail.com</a></p>
 
 <hr>
 
@@ -194,25 +204,28 @@ class days and times, subjects, academy names, shuttle times and short stops bet
 contacts (names and phone numbers), memos, holiday notes and shuttle places — never tuition or payment records.
 Only people who join with your invite code can see it, and only one manager can edit it.
 (b) <em>Academy info packs</em> (optional): the chosen academy cards; tuition only if the sender includes it; never payment records; expires after 400 days.
-(c) The search term you type when using Naver local search to look up an academy.</p>
+(c) The search term you type when using Naver local search to look up an academy — it travels through our relay server (Cloudflare Workers) to Naver's local search API, which returns the academy's address and phone number.
+(d) <em>Reports</em> (optional): if you report a shared timetable you are viewing, we store the timetable's id, the reason you picked (from a fixed list — there is no free-text box), the time, and your account id. Only Sodam Apps can read reports; the reported person is not notified.</p>
 <p lang="en"><strong>4. Processors and retention —</strong> Supabase Inc. hosts sign-in and shared data, stored in the Seoul region (South Korea);
 the server is shared by Sodam Apps' apps under one “Sodam Apps” account, but Hakwon Bisu data stays in its own area.
-Google handles Google sign-in. Your synced data is kept while you use a signed-in account and is deleted immediately when you
+Google handles Google sign-in. Cloudflare, Inc. runs the relay server for academy search (section 3c) and does not store search terms;
+NAVER receives only that search term and returns the academy's address and phone number. Your synced data is kept while you use a signed-in account and is deleted immediately when you
 leave Hakwon Bisu or delete your account (signing out alone does not delete it; signing back in resumes it). Shared data is kept until
-you end a share, leave Hakwon Bisu, or delete your account; academy packs expire after 400 days.</p>
+you end a share, leave Hakwon Bisu, or delete your account; academy packs expire after 400 days; reports are kept while we need them to act on (up to one year).</p>
 <p lang="en"><strong>5. Advertising —</strong> This app currently shows no ads and processes no
 advertising identifiers; the advertising ID permission is removed from the app. If ads are
 introduced later, this policy and the store's Data Safety information will be updated first.</p>
 <p lang="en"><strong>6. Permissions —</strong> Contacts (optional, only the entry you pick) and
 notifications (optional, scheduled locally).</p>
-<p lang="en"><strong>7. Children —</strong> We do not knowingly collect data from children under 14. A child's name leaves the device only
+<p lang="en"><strong>7. Children —</strong> This app is a tool for parents and is listed for ages 18+; we do not knowingly collect data from children (under Korean law, under-14s cannot sign up without a guardian's consent). A child's name leaves the device only
 when a parent signs in (kept in the parent's own account, visible only to the parent) or shares that child's timetable with family members they choose.</p>
 <p lang="en"><strong>8. Deletion —</strong> Deleting an item in the app also deletes it from your account and other devices while signed in.
 In the “Share together” screen: end a share or leave it; <em>Leave Hakwon Bisu</em> deletes your
 Hakwon Bisu server data (including your synced data) and keeps your Sodam Apps account and the data on your device; <em>Delete Sodam account</em> deletes the account and all its data in every
 Sodam app, irreversibly. Without the app, see <a href="https://sya-apps.github.io/delete-account.html">https://sya-apps.github.io/delete-account.html</a>
 or sign in to the web version (https://sya-apps.github.io/hakwon/) and use the same screen.</p>
-<p lang="en"><strong>9. Contact —</strong> <a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20Privacy%20Inquiry">sya.apps.dev@gmail.com</a></p>
+<p lang="en"><strong>9. Provider and contact —</strong> Sodam Apps (business registration 844-29-01813), 7 Sinmok-ro, Yangcheon-gu, Seoul, Republic of Korea ·
+<a href="mailto:sya.apps.dev@gmail.com?subject=%5B학원비서%5D%20Privacy%20Inquiry">sya.apps.dev@gmail.com</a></p>
 
 </body>
 </html>
