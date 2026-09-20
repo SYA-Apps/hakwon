@@ -32003,7 +32003,7 @@ q+=a.Om(p==null?r.a(p):p,o)}return q},
 bB9(a,b,c){return B.c.jT(a,0,new A.aJG(b,c),t.S)},
 bB6(a,b,c){var s,r,q,p=J.hk(12,t.S)
 for(s=0;s<12;s=r){r=s+1
-q=A.c6(b,r,1,0,0,0,0)
+q=A.c6(b,r-1,1,0,0,0,0)
 p[s]=A.bB9(a,""+A.bZ(q)+"-"+B.e.dd(B.b.j(A.bO(q)),2,"0"),c)}return p},
 bB7(a,b,c){return A.blr(a,b,c,new A.aJE())},
 bB4(a,b,c){return A.blr(a,b,c,new A.aJz())},
@@ -32023,7 +32023,7 @@ e.zV(h,new A.aJC(g),new A.aJD(g))}}}return e},
 bB3(a){return new A.ah(a,new A.aJy(),A.a0(a).i("ah<1>")).gC(0)},
 bB8(a){return J.bgw(a,new A.aJF())},
 blq(a){var s,r,q=A.b([],t.s)
-for(s=1;s<=12;++s){r=A.c6(a,s,1,0,0,0,0)
+for(s=1;s<=12;++s){r=A.c6(a,s-1,1,0,0,0,0)
 q.push(""+A.bZ(r)+"-"+B.e.dd(B.b.j(A.bO(r)),2,"0"))}return q},
 blr(a,b,c,d){var s,r,q,p,o,n,m,l,k=A.y(t.N,t.S)
 for(s=A.blq(b),r=s.length,q=0;q<s.length;s.length===r||(0,A.x)(s),++q){p=s[q]
@@ -127466,7 +127466,7 @@ else{k=A.kC(a3,40,640,16,4)
 j=A.bB3(p)
 i=a.f
 h=A.n(a.d)
-if(i!=null){g=h+"\ub144 "+(i+1)+"\uc6d4 \ud559\uc6d0\ube44"
+if(i!=null){g=h+"\ub144 "+(i+1)+"\uc6d4\ubd84 \ud559\uc6d0\ube44"
 h=p[i]
 f=$.iI().eS(h)+"\uc6d0"
 e=i>0?p[i]-p[i-1]:0
@@ -127490,7 +127490,7 @@ B.c.M(c,A.b([B.dH,a.a0D(a2,"\uc790\ub140\ubcc4",h,o,new A.b32(a1,a2),new A.b33(a
 c.push(a.a0C(a2,"\ud559\uc6d0\ubcc4",A.bdr(A.bB4(s,a.d,q)),o,new A.b2V(a1,a2),new A.b2W(a1)))
 c.push(B.cK)
 q=q.a!==0&&n?"\n\ud615\uc81c\uac00 \uac19\uc774 \ub2e4\ub2c8\ub294 \ud559\uc6d0\uc740 \uc778\uc6d0\uc218\ub85c \ub098\ub208 \ubaab\ub9cc \uc149\ub2c8\ub2e4.":""
-c.push(A.A("\uc2e4\uc81c\ub85c \ub3c8\uc774 \ub098\uac04 \ub2ec\ub85c \uc149\ub2c8\ub2e4 \u2014 \ud1b5\uc7a5 \ub0b4\uc5ed\uacfc \ub300\uc870\ud558\uae30 \uc88b\uac8c\uc694.\n(\ud559\uc6d0\ube44 \ud0ed\uc740 \xab\uba87 \uc6d4 \uc218\uc5c5\ubd84\xbb \uc73c\ub85c \ubb36\uc2b5\ub2c8\ub2e4.)\n\xab\ub0a9\ubd80 \uc644\ub8cc\xbb\ub85c \ud45c\uc2dc\ud55c \uac83\ub9cc \uc149\ub2c8\ub2e4. \uc2e4\ub0a9\ubd80\uc561\uc744 \uc801\uc5b4 \ub454 \ub2ec\uc740 \uadf8 \uae08\uc561\uc73c\ub85c,\n\uc548 \uc801\uc740 \ub2ec\uc740 \ud559\uc6d0\ube44 \uae30\ubcf8 \uae08\uc561\uc73c\ub85c \uacc4\uc0b0\ud574\uc694."+q,a0,a0,a0,a0,A.S(a0,a0,a2.ay,a0,a0,a0,a0,a0,a0,a0,a0,11,a0,a0,a0,a0,1.5,!0,a0,a0,a0,a0,a0,a0,a0,a0),a0,a0,a0))
+c.push(A.A("\xab\uba87 \uc6d4 \uc218\uc5c5\ubd84\xbb \uc73c\ub85c \ubb36\uc2b5\ub2c8\ub2e4 \u2014 9\uc6d4\ubd84 \ud559\uc6d0\ube44\ub294 \ubcf4\ud1b5 8\uc6d4 \ub9d0\uc5d0 \ub0b4\uc694.\n\uadf8\ub798\uc11c \xab2026\ub144\xbb \uc740 \uc791\ub144 12\uc6d4 ~ \uc62c\ud574 11\uc6d4\uc5d0 \ub0b8 \ub3c8\uc785\ub2c8\ub2e4.\n\xab\ub0a9\ubd80 \uc644\ub8cc\xbb\ub85c \ud45c\uc2dc\ud55c \uac83\ub9cc \uc149\ub2c8\ub2e4. \uc2e4\ub0a9\ubd80\uc561\uc744 \uc801\uc5b4 \ub454 \ub2ec\uc740 \uadf8 \uae08\uc561\uc73c\ub85c,\n\uc548 \uc801\uc740 \ub2ec\uc740 \ud559\uc6d0\ube44 \uae30\ubcf8 \uae08\uc561\uc73c\ub85c \uacc4\uc0b0\ud574\uc694."+q,a0,a0,a0,a0,A.S(a0,a0,a2.ay,a0,a0,a0,a0,a0,a0,a0,a0,11,a0,a0,a0,a0,1.5,!0,a0,a0,a0,a0,a0,a0,a0,a0),a0,a0,a0))
 k=A.p3(c,k,a0,B.a2)
 a2=k}l.push(A.bs(a2,1))
 return A.kk(r,A.b1(l,B.n,B.f,B.l,0,B.t),a0,a0,a0)},
