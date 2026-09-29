@@ -87,6 +87,25 @@
     For more details:
     * https://docs.flutter.dev/platform-integration/web/initialization
   -->
+  <!-- 📦 앱 파일을 폰에 붙들어 두는 캐시(web/sw.js · 2026-09-30 «로딩은 아직도 느려»).
+       번호(B)는 배포 때 tool/stamp_web.py 가 main.dart.js 지문으로 바꿔 넣는다.
+       🚨 **안 바꿨으면(밑줄로 시작) 캐시를 켜지 않는다** — 번호가 그대로면 새 판을 영영 못 알아채서다.
+       그때는 오늘까지와 똑같이(캐시 없이) 돈다. -->
+  <script>
+    (function () {
+      var B = '063a4ee75d01';
+      if (!('serviceWorker' in navigator) || B.charAt(0) === '_') return;
+      navigator.serviceWorker.register('sw.js?b=' + B).catch(function () {});
+      addEventListener('flutter-first-frame', function () {
+        setTimeout(function () {
+          navigator.serviceWorker.ready.then(function (r) {
+            var list = performance.getEntriesByType('resource').map(function (e) { return e.name; });
+            if (r.active) r.active.postMessage({ warm: list });
+          }).catch(function () {});
+        }, 2000); // 첫 화면이 뜬 뒤 글꼴·그림까지 다 받은 다음에
+      });
+    })();
+  </script>
   <script src="flutter_bootstrap.js" async></script>
 </body>
 </html>
