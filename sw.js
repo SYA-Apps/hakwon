@@ -72,7 +72,10 @@ self.addEventListener('fetch', (event) => {
     const cache = await caches.open(CACHE);
     const hit = await cache.match(req, { ignoreSearch: true });
     if (hit) return hit;
-    const res = await fetch(req);
+    // 🚨 `no-cache` 로 받는다(2026-10-01 사용자 «띠를 눌러도 안 바뀌어»). 그냥 fetch 하면 브라우저 캐시
+    //    (Pages max-age=600 · 아이폰은 더 오래)에 남은 **옛 main.dart.js** 가 나와 새 판 캐시에 박혔다 —
+    //    main.dart.js 주소엔 판 번호가 없어서 다음 배포까지 옛 화면에 갇힌다. 판마다 한 번이라 304 면 가볍다.
+    const res = await fetch(new Request(req, { cache: 'no-cache' }));
     if (res.ok && res.type === 'basic') cache.put(req, res.clone()).catch(() => {});
     return res;
   })());
