@@ -7,8 +7,8 @@
   web/ 에 두었으므로 `flutter build web` 이 산출물에 그대로 실어 Pages 로 올라간다.
   방침을 두 벌로 관리하면 앱은 살아 있는데 방침만 죽는 날이 온다 — 고칠 때는 여기만.
 
-  ⚠️ 1.0 은 **광고 없이** 낸다(AdService.adsEnabled = false). §5 가 그렇게 적혀 있다.
-     광고를 켜는 날 §5 와 **데이터 안전 설문**과 매니페스트 AD_ID 를 **함께** 고친다 —
+  ⚠️ 2026-10-08: 1.0.3(6) 광고 판부터 §5 가 «시간표 화면 맨 아래 배너 광고 한 줄(구글 AdMob)» 이다.
+     광고를 바꾸는 날 §5 와 **데이터 안전 설문**과 매니페스트 AD_ID 를 **함께** 고친다 —
      한쪽만 고치면 불일치로 반려된다(플레이북 05). 목록: docs/출시-체크리스트.md
 
   🔁 2026-09-12: «함께 보기»(구글 로그인 · 시간표 공유)가 들어가며 §1·§3·§4·§8 을 고쳤다.
@@ -38,7 +38,7 @@
 <body>
 
 <h1>학원시간표 개인정보처리방침</h1>
-<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 10월 2일(앱 이름을 학원시간표로 · 연락처 권한 없이 고르기 · 납부 메모)</p>
+<p class="muted">시행일: 2026년 9월 1일 · 최종 수정: 2026년 10월 8일(광고 안내 · 광고 제공자 구글 AdMob 추가)</p>
 
 <div class="box">
   <strong>로그인하지 않으면 학원시간표는 여러분의 정보를 서버로 보내지 않습니다.</strong>
@@ -102,6 +102,8 @@
       누르면, 여러분이 입력한 <em>검색어(학원 이름 등)</em>만 <strong>소담앱스의 중계 서버(Cloudflare Workers)를 거쳐</strong>
       네이버 지역검색 API로 전송되어 주소·전화번호를 받아옵니다(중계 서버를 두는 이유는 검색 열쇠를 앱에 넣지 않기 위해서입니다).
       자녀 이름·학원비 등 다른 정보는 함께 보내지 않으며, 이 기능을 쓰지 않으면 아무것도 전송되지 않습니다.</li>
+  <li><strong>광고</strong> — 시간표 화면의 광고를 보여 줄 때 <strong>광고 제공자(구글 AdMob)</strong>에게 광고 ID와 기기 정보가 전달될 수 있습니다(5항).
+      앱에 입력한 자료는 전달되지 않습니다.</li>
   <li><strong>신고</strong>(선택) — 「함께 보기」로 받아 보는 시간표를 신고하면, <strong>그 시간표의 번호와
       고른 사유, 신고한 시각, 신고한 분의 계정 식별자</strong>가 서버에 기록됩니다. 사유는 정해진 선택지 중에서만 고르며
       자유롭게 적는 칸은 없습니다. 이 기록은 <strong>소담앱스만</strong> 보고, 신고당한 사람에게는 알리지 않습니다.</li>
@@ -116,6 +118,7 @@
       이 서버는 소담앱스(학원시간표를 만든 곳)의 여러 앱이 함께 쓰며, 로그인 계정도 「소담앱스」 계정 하나입니다.
       다만 <strong>학원시간표의 자료는 학원시간표 칸에만</strong> 있어 다른 앱에서는 보이지 않습니다.</li>
   <li><strong>Google</strong> — 구글 로그인을 처리합니다(로그인 창은 「소담앱스」 이름으로 뜹니다).</li>
+  <li><strong>Google AdMob</strong> — 시간표 화면의 광고를 보여 줍니다(5항). 광고를 위한 정보의 보관은 구글이 자체 정책에 따라 관리합니다.</li>
   <li><strong>Cloudflare, Inc.</strong> — 학원 검색(3항)의 <strong>중계 서버</strong>를 운영합니다.
       검색어가 이곳을 거쳐 네이버로 가며, 검색어를 저장하지 않습니다.</li>
   <li><strong>네이버(NAVER Cloud / 네이버 지역검색 API)</strong> — 여러분이 「네이버에서 찾기」를 누를 때만
@@ -128,10 +131,13 @@
 </ul>
 
 <h2>5. 광고</h2>
-<p><strong>이 앱은 현재 광고를 게재하지 않습니다.</strong> 광고 식별자를 비롯해 광고를 위한
-어떤 정보도 처리하지 않으며, 그에 필요한 권한(광고 ID)도 앱에서 제거해 두었습니다.</p>
-<p>앞으로 광고를 도입하게 되면 <strong>이 방침을 먼저 고쳐 시행일과 함께 알리고</strong>,
-스토어의 「데이터 안전」 정보도 함께 갱신합니다. 동의가 필요한 지역에서는 그때 동의를 여쭙습니다.</p>
+<p>이 앱은 <strong>시간표 화면 맨 아래에 광고(배너) 한 줄</strong>을 게재합니다.
+광고는 구글 AdMob 이 보여 주며, 이를 위해 <strong>광고 식별자(광고 ID)와 기기 정보(기기 종류·OS 버전·IP 주소로 알 수 있는 대략적인 위치 등)</strong>가
+광고 제공자에게 전달될 수 있습니다. 광고 ID 는 폰의 설정에서 재설정하거나 개인 맞춤 광고를 끌 수 있습니다.</p>
+<p>자녀 이름·학원 정보·학원비·납부 기록 등 <strong>앱에 입력한 자료는 광고 제공자에게 전달하지 않으며</strong>,
+가족과 공유하는 자료에도 광고 식별자는 들어가지 않습니다.</p>
+<p>유럽 등 동의가 필요한 지역에서는 광고를 보여 드리기 전에 동의를 여쭙습니다.
+이 앱은 만 18세 이상을 대상으로 하며, 광고는 아동 대상이 아닌 일반 광고입니다.</p>
 
 <h2>6. 권한</h2>
 <ul>
@@ -176,7 +182,7 @@
 <hr>
 
 <h1 lang="en">Hakwon Bisu — Privacy Policy</h1>
-<p class="muted" lang="en">Effective: September 1, 2026 · Last updated: October 2, 2026 (app renamed to 학원시간표 · no contacts permission · payment memos)</p>
+<p class="muted" lang="en">Effective: September 1, 2026 · Last updated: October 8, 2026 (advertising notice · ad provider Google AdMob added)</p>
 <div class="box" lang="en">
   <strong>If you don't sign in, Hakwon Bisu sends nothing to any server.</strong>
   Everything you enter is stored <strong>only on this device</strong>.
@@ -206,16 +212,20 @@ contacts (names and phone numbers), memos, holiday notes and shuttle places — 
 Only people who join with your invite code can see it, and only one manager can edit it.
 (b) <em>Academy info packs</em> (optional): the chosen academy cards; tuition only if the sender includes it; never payment records; expires after 400 days.
 (c) The search term you type when using Naver local search to look up an academy — it travels through our relay server (Cloudflare Workers) to Naver's local search API, which returns the academy's address and phone number.
-(d) <em>Reports</em> (optional): if you report a shared timetable you are viewing, we store the timetable's id, the reason you picked (from a fixed list — there is no free-text box), the time, and your account id. Only Sodam Apps can read reports; the reported person is not notified.</p>
+(d) <em>Ads</em>: to show the banner ad, the advertising ID and basic device information may be sent to the ad provider, Google AdMob (section 5); the data you enter is not sent.
+(e) <em>Reports</em> (optional): if you report a shared timetable you are viewing, we store the timetable's id, the reason you picked (from a fixed list — there is no free-text box), the time, and your account id. Only Sodam Apps can read reports; the reported person is not notified.</p>
 <p lang="en"><strong>4. Processors and retention —</strong> Supabase Inc. hosts sign-in and shared data, stored in the Seoul region (South Korea);
 the server is shared by Sodam Apps' apps under one “Sodam Apps” account, but Hakwon Bisu data stays in its own area.
-Google handles Google sign-in. Cloudflare, Inc. runs the relay server for academy search (section 3c) and does not store search terms;
+Google handles Google sign-in; Google AdMob serves the ad (section 5) and keeps ad-related data under its own policies. Cloudflare, Inc. runs the relay server for academy search (section 3c) and does not store search terms;
 NAVER receives only that search term and returns the academy's address and phone number. Your synced data is kept while you use a signed-in account and is deleted immediately when you
 leave Hakwon Bisu or delete your account (signing out alone does not delete it; signing back in resumes it). Shared data is kept until
 you end a share, leave Hakwon Bisu, or delete your account; academy packs expire after 400 days; reports are kept while we need them to act on (up to one year).</p>
-<p lang="en"><strong>5. Advertising —</strong> This app currently shows no ads and processes no
-advertising identifiers; the advertising ID permission is removed from the app. If ads are
-introduced later, this policy and the store's Data Safety information will be updated first.</p>
+<p lang="en"><strong>5. Advertising —</strong> The app shows <strong>one banner ad at the bottom of the timetable screen</strong>,
+served by Google AdMob. To serve it, the <strong>advertising ID and basic device information</strong> (device type, OS version, approximate
+location derived from the IP address) may be sent to the ad provider. You can reset the advertising ID or turn off ad personalization in
+your phone's settings. The data you enter (children's names, academies, fees, payment records) is <strong>never sent to the ad provider</strong>,
+and no advertising identifier is included in data shared with family. Where consent is required (e.g. the EU), we ask before showing ads.
+The app is intended for ages 18+, and ads are general-audience ads.</p>
 <p lang="en"><strong>6. Permissions —</strong> No contacts permission: the phone's own contact picker returns only the one entry you pick. Notifications
 (optional) are scheduled locally.</p>
 <p lang="en"><strong>7. Children —</strong> This app is a tool for parents and is listed for ages 18+; we do not knowingly collect data from children (under Korean law, under-14s cannot sign up without a guardian's consent). A child's name leaves the device only
