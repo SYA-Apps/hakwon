@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<!--
+  학원시간표 받기 페이지 — 「친구에게 추천하기」 글에 들어가는 링크 하나.
+    https://sya-apps.github.io/hakwon/get.html
+  안드로이드: 1.5초 뒤 Google Play 로 자동 이동(+ 단추 둘)  /  아이폰·아이패드: 자동 이동 없음, 안내 그림을 읽을 시간
+  PC: 1.5초 뒤 웹으로  /  주소 뒤 ?stay 를 붙이면 자동 이동을 끈다(시험용)
+  카톡 미리보기는 아래 og 태그를 쓴다(Play 주소는 카톡이 미리보기를 못 만들어서 이 페이지가 대신한다).
+  본보기: https://sya-apps.github.io/sample/sweatdrop-way.html · 디자인은 이 앱 것(크림 · 세이지 · 고운돋움)
+  🔒 사용자에게 보이는 글에는 「」만 쓰고 « » · 가운뎃점 · 긴 줄표는 쓰지 않는다.
+-->
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>학원시간표 받기</title>
+  <meta name="description" content="우리 아이 학원 시간표와 학원비를 한 곳에서 보는 앱이에요.">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="학원시간표">
+  <meta property="og:title" content="학원시간표 - 시간표와 학원비를 한 곳에">
+  <meta property="og:description" content="우리 아이 학원 시간표와 학원비를 한 곳에서. 누르면 바로 받아요.">
+  <meta property="og:image" content="https://sya-apps.github.io/hakwon/og-image.png">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="학원시간표 앱 아이콘">
+  <meta property="og:url" content="https://sya-apps.github.io/hakwon/get.html">
+  <meta property="og:locale" content="ko_KR">
+  <link rel="icon" type="image/png" href="favicon.png">
+  <link rel="apple-touch-icon" href="icons/Icon-192.png">
+  <style>
+    @font-face{font-family:"Gowun Dodum";src:url("assets/assets/fonts/GowunDodum-Regular.ttf") format("truetype");font-display:swap}
+    :root{
+      --paper:#FBF3D6; --card:#FFFDF6; --ink:#4A3B36; --soft:#847169; --brand:#6E8B66; --on:#FFFFFF;
+      --brand-soft:#E0E8D8; --line:#E8DFC6;
+    }
+    @media (prefers-color-scheme:dark){
+      :root{--paper:#211C18; --card:#2E2823; --ink:#F1E8DB; --soft:#B9AA9C; --brand:#A9C29F; --on:#211C18;
+        --brand-soft:#34402F; --line:#3D362F}
+    }
+    *{box-sizing:border-box}
+    html,body{margin:0;background:var(--paper);color:var(--ink);
+      font-family:"Gowun Dodum","Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif;text-align:center}
+    main{max-width:420px;margin:0 auto;padding:56px 20px 40px}
+    .card{background:var(--card);border:1px solid var(--line);border-radius:24px;padding:28px 20px 22px}
+    .icon{width:96px;height:96px;border-radius:22px;display:block;margin:0 auto 14px}
+    h1{font-size:1.65rem;margin:0 0 6px;font-weight:400}
+    .lead{margin:0 0 18px;color:var(--soft);font-size:1.02rem;line-height:1.5}
+    #msg{min-height:1.5em;margin:0 0 16px;color:var(--soft);font-size:.95rem;line-height:1.5}
+    .btn{display:block;text-decoration:none;background:var(--brand);color:var(--on);border-radius:16px;
+      padding:15px 14px;margin:10px 0;font-size:1.05rem;font-family:inherit}
+    .btn.sub{background:transparent;color:var(--ink);border:1.5px solid var(--brand)}
+    #guide{display:none;margin-top:16px}
+    #guide img{width:100%;height:auto;border-radius:14px;display:block}
+    #guide p{margin:8px 0 0;font-size:.88rem;color:var(--soft)}
+    .foot{margin-top:18px;font-size:.8rem;color:var(--soft)}
+  </style>
+</head>
+<body>
+<main>
+  <div class="card">
+    <img class="icon" src="icons/Icon-192.png" alt="학원시간표 앱 아이콘" width="96" height="96">
+    <h1>학원시간표</h1>
+    <p class="lead">시간표와 학원비를 한 곳에서<br>아이별로 모아 봐요</p>
+    <p id="msg">기기를 확인하고 있어요</p>
+    <a id="go" class="btn" href="./">바로 열기</a>
+    <a id="alt" class="btn sub" href="./" style="display:none"></a>
+    <div id="guide">
+      <img src="https://sya-apps.github.io/guide/ios-add-to-home.png" alt="아이폰에서 앱처럼 쓰기 안내 그림"
+           onerror="this.parentNode.style.display='none';document.getElementById('guideText').style.display='block'">
+    </div>
+    <p id="guideText" class="foot" style="display:none">사파리 아래 공유 단추를 누르고 「홈 화면에 추가」를 고르면 앱처럼 써요.</p>
+  </div>
+  <p class="foot">회원가입 없이 바로 써요</p>
+</main>
+<script>
+  /* 주소 뒤에 ?stay 를 붙이면 자동으로 넘어가지 않고 이 화면에 머문다(시험용) */
+  var ua = navigator.userAgent;
+  var android = /Android/i.test(ua);
+  var iphone = /iPhone|iPad|iPod/i.test(ua) || (/Macintosh/i.test(ua) && navigator.maxTouchPoints > 1);
+  var stay = /[?&]stay/.test(location.search);
+  var play = 'https://play.google.com/store/apps/details?id=com.sya.hakwon';
+  var web = 'https://sya-apps.github.io/hakwon/';
+  var go = document.getElementById('go'), alt = document.getElementById('alt'), msg = document.getElementById('msg');
+  if (android) {
+    msg.textContent = '안드로이드예요. Google Play로 가서 앱을 받아요.';
+    go.textContent = 'Google Play에서 앱 받기'; go.href = play;
+    alt.style.display = 'block'; alt.textContent = '웹으로 먼저 써 보기'; alt.href = web;
+    if (!stay) setTimeout(function () { location.href = play; }, 1500);
+  } else if (iphone) {
+    /* 아이폰은 자동으로 넘기지 않는다: 안내를 읽을 시간이 필요하다 */
+    msg.textContent = '아이폰이에요. 웹으로 열고 홈 화면에 추가하면 앱처럼 써요.';
+    go.textContent = '웹으로 열기'; go.href = web;
+    document.getElementById('guide').style.display = 'block';
+  } else {
+    msg.textContent = '컴퓨터예요. 웹으로 열어요.';
+    go.textContent = '웹으로 열기'; go.href = web;
+    if (!stay) setTimeout(function () { location.href = web; }, 1500);
+  }
+</script>
+</body>
+</html>
