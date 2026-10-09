@@ -1,6 +1,6 @@
 {
-    "name": "학원시간표",
-    "short_name": "학원시간표",
+    "name": "학원지니",
+    "short_name": "학원지니",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#6E8B66",
