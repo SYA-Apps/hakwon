@@ -59,7 +59,8 @@
     var APP = {
       scheme: 'hakwon',                 // AndroidManifest <data android:scheme="hakwon" android:host="join"/>
       pkg: 'com.sya.hakwon',            // applicationId(AppInfo.packageId)
-      store: 'https://play.google.com/store/apps/details?id=com.sya.hakwon'  // 2026-10-02 프로덕션 공개
+      store: 'https://play.google.com/store/apps/details?id=com.sya.hakwon',  // 2026-10-02 프로덕션 공개
+      iosStore: 'https://apps.apple.com/kr/app/id6823481800'                  // 2026-11-04 앱스토어 공개
     };
 
     var q = new URLSearchParams(location.search);
@@ -78,6 +79,22 @@
     if (APP.store) $('getApp').href = APP.store;
 
     var android = /Android/i.test(navigator.userAgent);
+    var ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (q.get('to') !== 'web' && ios) {
+      // 아이폰: 앱이 등록한 주소(hakwon://join?code=…)로 연다. 안 열리면 1.5초 뒤 손으로 고르게 한다.
+      $('getApp').textContent = '아이폰 앱 받기';
+      $('getApp').href = APP.iosStore;
+      location.href = APP.scheme + '://join?code=' + encodeURIComponent(code);
+      setTimeout(function () {
+        if (document.visibilityState !== 'visible') return;
+        $('title').textContent = '앱이 열리지 않았어요';
+        $('msg').textContent = '앱을 받은 뒤 받은 링크를 한 번 더 눌러 주세요. 아니면 웹으로 바로 들어갈 수 있어요.';
+        $('code').hidden = false;
+        $('toWeb').hidden = false;
+        $('getApp').hidden = false;
+      }, 1500);
+      return;
+    }
     if (q.get('to') === 'web' || !android) {
       $('msg').textContent = '웹으로 여는 중이에요…';
       location.replace(web);
