@@ -6,7 +6,7 @@
     https://sya-apps.github.io/hakwon/join.html?code=XXXXXXXX          📱 안드로이드 앱으로
     https://sya-apps.github.io/hakwon/join.html?code=XXXXXXXX&to=web   🌐 웹으로
 
-  안드로이드 → intent://join?code=… 로 앱을 연다(없으면 웹 — 스토어 전). 아이폰·PC·to=web → 웹 ./?join=XXXXXXXX
+  안드로이드 → intent://join?join=… 로 앱을 연다(없으면 웹 — 스토어 전). 아이폰·PC·to=web → 웹 ./?join=XXXXXXXX
   🚨 템플릿과 한 곳 다르다: 웹으로 보낼 때 ?code= 가 아니라 **?join=** 이다. Supabase 가 웹 주소의
      ?code= 를 로그인 되돌아오기로 읽어 교환하려 든다(InviteLink.webParam — 시험이 둘을 맞춰 본다).
   📌 스토어에 올리면 APP.store 에 플레이스토어 주소를 넣는다(docs/출시-체크리스트.md).
@@ -81,10 +81,10 @@
     var android = /Android/i.test(navigator.userAgent);
     var ios = /iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (q.get('to') !== 'web' && ios) {
-      // 아이폰: 앱이 등록한 주소(hakwon://join?code=…)로 연다. 안 열리면 1.5초 뒤 손으로 고르게 한다.
+      // 아이폰: 앱이 등록한 주소(hakwon://join?join=…)로 연다. 안 열리면 1.5초 뒤 손으로 고르게 한다.
       $('getApp').textContent = '아이폰 앱 받기';
       $('getApp').href = APP.iosStore;
-      location.href = APP.scheme + '://join?code=' + encodeURIComponent(code);
+      location.href = APP.scheme + '://join?join=' + encodeURIComponent(code);
       setTimeout(function () {
         if (document.visibilityState !== 'visible') return;
         $('title').textContent = '앱이 열리지 않았어요';
@@ -103,7 +103,7 @@
 
     // 앱이 있으면 곧장 앱으로. 없으면 크롬·카톡이 fallback 주소(스토어 또는 웹)로 보낸다.
     var fallback = APP.store || web;
-    location.href = 'intent://join?code=' + encodeURIComponent(code)
+    location.href = 'intent://join?join=' + encodeURIComponent(code)
       + '#Intent;scheme=' + APP.scheme + ';package=' + APP.pkg
       + ';S.browser_fallback_url=' + encodeURIComponent(fallback) + ';end';
 
